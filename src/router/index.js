@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import sourceData from '@/data.json'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -20,7 +20,24 @@ const router = createRouter({
     {
       path: '/thread/:id',
       name: 'ThreadShow',
-      component: () => import('../views/PageThreadShow.vue')
+      component: () => import('../views/PageThreadShow.vue'),
+      props: true,
+      beforeEnter (to, from, next) {
+        // check if thread exists
+        const threadExists = sourceData.threads.find(thread => thread.id === to.params.id)
+        // if exists continue
+        if (threadExists) {
+          return next()
+        } else {
+          next({
+            name: 'NotFound',
+            params: { pathMatch: to.path.substring(1).split('/') },
+            // preserve existing query and hash
+            query: to.query,
+            hash: to.hash
+          })
+        }
+      }
     },
     {
       path: '/:pathMatch(.*)*',

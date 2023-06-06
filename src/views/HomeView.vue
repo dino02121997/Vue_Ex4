@@ -19,6 +19,7 @@ function postById(postId) {
 function userById(userId) {
   return users.value.find((p) => p.id === userId)
 }
+
 </script>
 <style scoped>
 </style>
