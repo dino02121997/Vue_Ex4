@@ -2,6 +2,7 @@
 
 <template>
   <h1>Welcome to the Forum</h1>
+  <AppDate/>
   <ThreadList :threads="threads" />
 </template>
 
