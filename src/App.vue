@@ -1,18 +1,19 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import TheNavbar from './components/TheNavbar.vue';
 </script>
 
 <template>
   <header>
    
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
+    
+      <TheNavbar/>
+      <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav>
+      </nav> -->
     </div>
   </header>
 
@@ -21,4 +22,5 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style>
 @import "assets/style.css";
+
 </style>

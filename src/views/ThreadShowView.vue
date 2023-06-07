@@ -60,7 +60,7 @@ function addPost(eventData) {
   
 }
 onMounted(() => {
-  console.log(posts)
+ 
   console.log('Component mounted!')
 });
 </script>
