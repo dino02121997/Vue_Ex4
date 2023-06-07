@@ -44,6 +44,7 @@
           <a href="#">See only started threads?</a>
         </div>
         <hr />
+         <PostList :posts="userPosts" />
       </div>
     </div>
   </div>
@@ -55,6 +56,8 @@ import { useUsersStore } from '../stores/UsersStore'
 import { useThreadsStore } from '../stores/ThreadsStore'
 import { usePostsStore } from '../stores/PostsStore'
 import { ref, computed, onMounted } from 'vue'
+
+import PostList from '../components/PostList.vue'
 
 const threadsStore  = useThreadsStore()
 const threads = computed(() => threadsStore.threads)
