@@ -17,40 +17,52 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
+
+import { storeToRefs } from 'pinia'
+import { useThreadsStore } from '../stores/ThreadsStore'
+import { usePostsStore } from '../stores/PostsStore'
+
+// import sourceData from '@/data.json'
 import PostList from '../components/PostList.vue'
 import PostEditor from '../components/PostEditor.vue'
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-const threads = ref(sourceData.threads)
-const posts = ref(sourceData.posts)
-const users = ref(sourceData.users)
-const newPostText = ref('')
+
+const threadsStore  = useThreadsStore()
+const threads = computed(() => threadsStore.threads)
+
+const postStore = usePostsStore();
+const { posts } = storeToRefs(postStore)
+
+
+
+
 const props = defineProps(['id'])
 const route = useRoute()
+
+
 const thread = computed(() => {
   return threads.value.find((th) => th.id === route.params.id)
 })
 const threadPosts = computed(() => {
   return posts.value.filter((post) => post.threadId === route.params.id)
 })
+
+
 function addPost(eventData) {
-  // const postId = 'ggqq' + Math.random()
+
   const post = {
     ...eventData.post,
     threadId: props.id
   }
-  posts.value.push(post)
-  thread.value.posts.push(post.id)
-  console.log(post)
+
+  postStore.createPost(post)
   
-  
-  // newPostText.value = ''
 }
 onMounted(() => {
-  // Code to be executed when the component is mounted
+  console.log(posts)
   console.log('Component mounted!')
-})
+});
 </script>
 
 <style scoped>
