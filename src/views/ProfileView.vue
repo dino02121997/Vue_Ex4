@@ -44,7 +44,7 @@
           <a href="#">See only started threads?</a>
         </div>
         <hr />
-         <PostList :posts="userPosts" />
+        <PostList :posts="userPosts" />
       </div>
     </div>
   </div>
@@ -56,18 +56,18 @@ import { useUsersStore } from '../stores/UsersStore'
 import { useThreadsStore } from '../stores/ThreadsStore'
 import { usePostsStore } from '../stores/PostsStore'
 import { ref, computed, onMounted } from 'vue'
-
 import PostList from '../components/PostList.vue'
 
-const threadsStore  = useThreadsStore()
+const threadsStore = useThreadsStore()
 const threads = computed(() => threadsStore.threads)
 
-const postStore = usePostsStore();
+const postStore = usePostsStore()
 const { posts } = storeToRefs(postStore)
 
-
 const usersStore = useUsersStore()
-const user = computed(() => { return usersStore.authUser } )
+const user = computed(() => {
+  return usersStore.authUser
+})
 
 const userThreads = computed(() => {
   return threads.value.filter((post) => post.userId === usersStore.authId)
@@ -78,15 +78,14 @@ const userPosts = computed(() => {
 })
 
 const userPostsCount = computed(() => {
-    console.log(userPosts.value.length)
-    return userPosts.value.length
+  return usersStore.authUser.postsCount
 })
 
 const userThreadsCount = computed(() => {
-  return userThreads.value.length
+  return usersStore.authUser.threadsCount
 })
 onMounted(() => {
- 
+  
   console.log('Component mounted!')
-});
+})
 </script>
