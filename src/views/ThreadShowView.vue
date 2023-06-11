@@ -25,7 +25,7 @@ import { usePostsStore } from '../stores/PostsStore'
 // import sourceData from '@/data.json'
 import PostList from '../components/PostList.vue'
 import PostEditor from '../components/PostEditor.vue'
-import { ref, computed, onMounted } from 'vue'
+import {  computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
 const threadsStore  = useThreadsStore()

@@ -35,14 +35,9 @@
 
 <script setup>
 import sourceData from '@/data.json'
-import { defineProps, reactive } from 'vue'
+import { reactive } from 'vue'
 const users = reactive(sourceData.users)
-const props = defineProps({
-  posts: {
-    type: Array,
-    required: true
-  }
-})
+
 function userById(userId) {
   return users.find(p => p.id === userId)
 }

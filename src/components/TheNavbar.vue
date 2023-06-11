@@ -41,7 +41,7 @@
 
 <script setup>
 import IconTooling from './icons/IconTooling.vue'
-import { storeToRefs } from 'pinia'
+
 import { useUsersStore } from '../stores/UsersStore'
 
 const usersStore = useUsersStore();

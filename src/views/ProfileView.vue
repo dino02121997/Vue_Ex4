@@ -29,17 +29,14 @@
 import { storeToRefs } from 'pinia'
 import { useUsersStore } from '../stores/UsersStore'
 
-import { useThreadsStore } from '../stores/ThreadsStore'
+
 import { usePostsStore } from '../stores/PostsStore'
-import { ref, computed, onMounted } from 'vue'
+import {  computed, onMounted } from 'vue'
 
 import PostList from '../components/PostList.vue'
 
 import UserProfileCard from '../components/UserProfileCard.vue'
-import UserProfileCardEditor from '../components/UserProfileCardEditor.vue'
 
-const threadsStore = useThreadsStore()
-const threads = computed(() => threadsStore.threads)
 
 const postStore = usePostsStore()
 const { posts } = storeToRefs(postStore)
@@ -49,22 +46,13 @@ const user = computed(() => {
   return usersStore.authUser
 })
 
-const userThreads = computed(() => {
-  return threads.value.filter((post) => post.userId === usersStore.authId)
-})
 
 const userPosts = computed(() => {
   return posts.value.filter((post) => post.userId === usersStore.authId)
 })
 
-const userPostsCount = computed(() => {
-  return user.value.postsCount
-})
 
-const userThreadsCount = computed(() => {
-  return user.value.threadsCount
-})
 onMounted(() => {
   console.log('Component mounted!')
-})
+});
 </script>

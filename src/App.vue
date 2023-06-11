@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
 import TheNavbar from './components/TheNavbar.vue';
 </script>
 
@@ -10,10 +10,10 @@ import TheNavbar from './components/TheNavbar.vue';
     <div class="wrapper">
     
       <TheNavbar/>
-      <!-- <nav>
+      <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-      </nav> -->
+      </nav>
     </div>
   </header>
 
